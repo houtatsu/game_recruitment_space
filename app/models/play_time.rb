@@ -1,0 +1,2 @@
+class PlayTime < ApplicationRecord
+end
