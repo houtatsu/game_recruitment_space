@@ -1,0 +1,11 @@
+<h2>募集投稿</h2>
+
+<%= form_with model: @recruitment, url: public_recruitments_path, method: :post do |f| %>
+  <h4>内容</h4>
+  <%= f.text_area :recruitment_letter %><br>
+  <h4>スタイル</h4>
+  <%= f.select :style_id, options_from_collection_for_select(Style.all, :id, :name) %><br>
+  <h4>プレイ時間</h4>
+  <%= f.select :play_time_id, options_from_collection_for_select(PlayTime.all, :id, :name) %><br>
+  <%= f.submit '投稿', class:"btn btn-primary btn-sm" %>
+<% end %>

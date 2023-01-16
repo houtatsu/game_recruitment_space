@@ -5,8 +5,16 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   namespace :public do
     root to: 'homes#top'
+    resources :recruitments, only: [:new, :create, :show, :edit, :update, :destroy] do
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
+    end
     resources :customers, only: [:show, :edit, :update]
   end
   # 管理者側
@@ -16,6 +24,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
+    resources :customers, only: [:index, :show]
     resources :styles, only: [:index, :create, :edit, :update, :destroy]
     resources :play_times, only: [:index, :create, :edit, :update, :destroy]
   end

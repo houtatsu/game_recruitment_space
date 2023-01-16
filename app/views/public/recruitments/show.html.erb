@@ -1,0 +1,43 @@
+<h2>編集内容詳細画面</h2>
+
+<%= @recruitment.recruitment_letter %>
+<%= @recruitment.style.name %>
+<%= @recruitment.play_time.name %>
+
+<%= link_to "編集する", edit_public_recruitment_path(@recruitment.id), class:"btn btn-success btn-sm" %>
+<%= link_to "削除する", public_recruitment_path(@recruitment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger btn-sm" %>
+
+<div>
+  <% if @recruitment.favorited_by?(current_customer) %>
+    <p>
+      <%= link_to public_recruitment_favorites_path(@recruitment), method: :delete do %>
+        ♥<%= @recruitment.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to public_recruitment_favorites_path(@recruitment), method: :post do %>
+        ♡<%= @recruitment.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+</div>
+
+<div>
+  <p>コメント件数：<%= @recruitment.comments.count %></p>
+  <% @recruitment.comments.each do |comment| %>
+    <p><%= image_tag comment.customer.get_profile_image(40,40) %></p>
+    <%= comment.customer.name %>
+    <%= comment.content %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <% if comment.customer == current_customer %>
+      <%= link_to "削除", public_recruitment_comment_path(comment.recruitment, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@recruitment, @comment], url: public_recruitment_comments_path(@recruitment.id), method: :post do |f| %>
+    <%= f.text_area :content, rows: '3', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>

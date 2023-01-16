@@ -1,30 +1,76 @@
-<header>
-    <% if customer_signed_in? %>
-      <li>
-        <%= link_to "マイページ", public_customer_path(current_customer.id) %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-    <% elsif admin_signed_in? %>
-      <li>
-        <%= link_to "プレイスタイル", admin_styles_path %>
-      </li>
-      <li>
-        <%= link_to "プレイ時間", admin_play_times_path %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-      <li>
-        <%= link_to "ゲストログイン" %>
-      </li>
-    <% end %>
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-md">
+      <div class="container">
+        <strong>
+          GAME COMMUNITY
+        </strong>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if customer_signed_in? %>
+              <li class="nav-item">
+                <%= link_to new_public_recruitment_path do %>
+                  <i class="fas fa-plus-square fa-lg"></i>募集投稿
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to do %>
+                  <i class="fas fa-thumbs-up fa-lg"></i>いいね一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to public_customer_path(current_customer.id) do %>
+                  <i class="fas fa-users fa-lg"></i>マイページ
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_customer_session_path, method: :delete do %>
+                  <i class="fas fa-sign-out-alt fa-lg"></i>ログアウト
+                <% end %>
+              </li>
+            <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to admin_styles_path do %>
+                  <i class="fas fa-walking fa-lg"></i>プレイスタイル
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_play_times_path do %>
+                  <i class="fas fa-clock fa-lg"></i>プレイ時間
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_customers_path do %>
+                  <i class="fas fa-users fa-lg"></i>顧客一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_admin_session_path, method: :delete do %>
+                  <i class="fas fa-sign-out-alt fa-lg"></i>ログアウト
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to  new_customer_registration_path do %>
+                  <i class="fas fa-user-plus fa-lg"></i>新規登録
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_customer_session_path do %>
+                   <i class="fas fa-sign-in-alt fa-lg"></i>ログイン
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to customers_guest_sign_in_path, method: :post do %>
+                  <i class="fas fa-key fa-lg"></i>ゲストログイン
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>

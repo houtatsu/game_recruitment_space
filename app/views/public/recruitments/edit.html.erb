@@ -1,0 +1,12 @@
+<h2>投稿内容編集画面</h2>
+
+<%= form_with model: @recruitment, url: public_recruitment_path(@recruitment.id), method: :patch do |f| %>
+  <h4>内容</h4>
+  <%= f.text_area :recruitment_letter %><br>
+  <h4>スタイル</h4>
+  <%= f.select :style_id, options_from_collection_for_select(Style.all, :id, :name) %><br>
+  <h4>プレイ時間</h4>
+  <%= f.select :play_time_id, options_from_collection_for_select(PlayTime.all, :id, :name) %><br>
+
+  <%= f.submit '保存', class:"btn btn-info btn-sm" %>
+<% end %>

@@ -8,6 +8,12 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     new_customer_session_path
   end
+
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to public_root_path
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
