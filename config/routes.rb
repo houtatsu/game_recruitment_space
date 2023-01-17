@@ -15,7 +15,11 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-    resources :customers, only: [:show, :edit, :update]
+    resources :customers, only: [:show, :edit, :update] do
+      member do
+        get :favorites
+      end
+    end
   end
   # 管理者側
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

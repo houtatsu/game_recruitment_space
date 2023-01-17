@@ -7,3 +7,12 @@
     <p><%= link_to "プロフィール編集", edit_public_customer_path(@customer.id) %></p>
   <% end %>
 </div>
+
+<% @recruitments.each do |recruitment| %>
+  <div>
+    <p><%= image_tag recruitment.customer.get_profile_image(30,30) %><%= link_to recruitment.recruitment_letter, public_recruitment_path(recruitment.id) %></p>
+    <p>いいね数：<%= recruitment.favorites.count %></p>
+  </div>
+<% end %>
+
+<%= link_to "いいねした投稿", favorites_public_customer_path(@customer.id) %>

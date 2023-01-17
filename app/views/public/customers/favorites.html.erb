@@ -1,0 +1,11 @@
+<h2>いいね一覧</h2>
+
+<% @favorite_recruitments.each do |recruitment| %>
+
+  <p><%= image_tag recruitment.customer.get_profile_image(40,40) %><%= recruitment.customer.name %></p>
+  <p>
+    <%= recruitment.recruitment_letter %><br>
+    <%= recruitment.style.name %><br>
+    <%= recruitment.play_time.name %><br>
+  </p>
+<% end %>

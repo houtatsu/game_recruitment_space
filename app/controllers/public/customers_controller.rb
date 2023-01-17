@@ -1,6 +1,8 @@
 class Public::CustomersController < ApplicationController
+
   def show
     @customer = Customer.find(params[:id])
+    @recruitments = Recruitment.all
   end
 
   def edit
@@ -11,6 +13,12 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
     redirect_to public_customer_path(@customer.id)
+  end
+
+  def favorites
+    @customer = Customer.find(params[:id])
+    favorites = Favorite.where(customer_id: @customer.id).pluck(:recruitment_id)
+    @favorite_recruitments = Recruitment.find(favorites)
   end
 
   private
