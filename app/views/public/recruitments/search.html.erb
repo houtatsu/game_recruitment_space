@@ -1,0 +1,22 @@
+<h2>検索結果</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>募集内容</th>
+      <th>スタイル</th>
+      <th>プレイ時間</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |recruitment| %>
+      <tr>
+        <td><%= recruitment.recruitment_letter %></td>
+        <td><%= recruitment.style.name %></td>
+        <td><%= recruitment.play_time.name %></td>
+        <td><%= link_to "詳細", public_recruitment_path(recruitment.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

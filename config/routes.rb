@@ -12,10 +12,16 @@ Rails.application.routes.draw do
   namespace :public do
     root to: 'homes#top'
     resources :recruitments, only: [:new, :create, :show, :edit, :update, :destroy] do
+      collection do
+        get 'search'
+      end
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
     resources :customers, only: [:show, :edit, :update] do
+      collection do
+        get 'search'
+      end
       member do
         get :favorites
       end

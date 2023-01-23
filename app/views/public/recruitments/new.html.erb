@@ -1,4 +1,12 @@
 <h2>募集投稿</h2>
+<div>
+  <%= search_form_for @q, url: search_public_recruitments_path do |f| %>
+    <%= f.label :recruitment_letter_cont, "募集内容" %>
+    <%= f.search_field :recruitment_letter_cont %>
+    <br>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
 
 <%= form_with model: @recruitment, url: public_recruitments_path, method: :post do |f| %>
   <h4>内容</h4>

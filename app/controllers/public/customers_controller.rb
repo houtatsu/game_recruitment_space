@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :customer_set_q
 
   def show
     @customer = Customer.find(params[:id])
@@ -21,7 +22,15 @@ class Public::CustomersController < ApplicationController
     @favorite_recruitments = Recruitment.find(favorites)
   end
 
+  def search
+    @results = @q.result
+  end
+
   private
+
+  def customer_set_q
+    @q = Customer.ransack(params[:q])
+  end
 
   def customer_params
     params.require(:customer).permit(:name, :profile_image)

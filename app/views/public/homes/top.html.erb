@@ -1,5 +1,7 @@
 <h2>顧客側top</h2>
 
+
+
 <table>
 	<thead>
 		<tr>
@@ -13,8 +15,8 @@
 		<% @recruitments.each do |recruitment| %>
 			<tr>
 				<td><%= recruitment.recruitment_letter %></td>
-				<td><%= recruitment.style_id %></td>
-				<td><%= recruitment.play_time.id %></td>
+				<td><%= recruitment.style.name %></td>
+				<td><%= recruitment.play_time.name %></td>
 				<td><%= link_to "詳細", public_recruitment_path(recruitment.id) %></td>
 			</tr>
 		<% end %>

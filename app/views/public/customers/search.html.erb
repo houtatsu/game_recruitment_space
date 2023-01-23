@@ -1,0 +1,19 @@
+<h2>検索結果</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td><%= link_to "マイページ", public_customer_path(customer.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

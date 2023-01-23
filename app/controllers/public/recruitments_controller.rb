@@ -1,4 +1,6 @@
 class Public::RecruitmentsController < ApplicationController
+  before_action :set_q
+
   def new
     @recruitment = Recruitment.new
   end
@@ -31,7 +33,15 @@ class Public::RecruitmentsController < ApplicationController
     redirect_to public_root_path
   end
 
+  def search
+    @results = @q.result
+  end
+
   private
+
+  def set_q
+    @q = Recruitment.ransack(params[:q])
+  end
 
   def recruitment_params
     params.require(:recruitment).permit(:recruitment_letter, :style_id, :play_time_id)
