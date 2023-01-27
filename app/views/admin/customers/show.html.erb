@@ -1,2 +1,9 @@
 <h2><%= @customer.name %>さんの詳細</h2>
 
+<table>
+  <tr><th>いいね数</th><td><%= @customer.favorites.count %></td></tr>
+  <tr><th>コメント数</th><td><%= @customer.comments.count %></td></tr>
+  <tr><th>作成日</th><td><%= @customer.created_at.strftime('%Y/%m/%d') %></td></tr>
+</table>
+
+<%= link_to "戻る", admin_customers_path %>

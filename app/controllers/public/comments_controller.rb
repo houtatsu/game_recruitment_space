@@ -4,6 +4,7 @@ class Public::CommentsController < ApplicationController
     @comment = current_customer.comments.new(comment_params)
     @comment.recruitment_id = recruitment.id
     @comment.save
+    recruitment.create_notification_comment!(current_customer, @comment.id)
     redirect_to public_recruitment_path(recruitment.id)
   end
 

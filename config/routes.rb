@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :public do
     root to: 'homes#top'
+    resources :notifications, only: [:index, :destroy]
     resources :recruitments, only: [:new, :create, :show, :edit, :update, :destroy] do
       collection do
         get 'search'

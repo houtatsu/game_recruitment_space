@@ -8,8 +8,11 @@ class Public::RecruitmentsController < ApplicationController
   def create
     @recruitment = Recruitment.new(recruitment_params)
     @recruitment.customer_id = current_customer.id
-    @recruitment.save
-    redirect_to public_recruitment_path(@recruitment.id)
+    if @recruitment.save
+      redirect_to public_recruitment_path(@recruitment.id)
+    else
+      render :new
+    end
   end
 
   def show

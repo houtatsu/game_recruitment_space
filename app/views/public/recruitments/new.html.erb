@@ -17,3 +17,14 @@
   <%= f.select :play_time_id, options_from_collection_for_select(PlayTime.all, :id, :name) %><br>
   <%= f.submit '投稿', class:"btn btn-primary btn-sm" %>
 <% end %>
+
+<div>
+  <% if @recruitment.errors.any? %>
+    <%= @recruitment.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @recruitment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

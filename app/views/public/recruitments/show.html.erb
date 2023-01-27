@@ -1,11 +1,15 @@
 <h2>編集内容詳細画面</h2>
 
-<%= @recruitment.recruitment_letter %>
-<%= @recruitment.style.name %>
-<%= @recruitment.play_time.name %>
+<div>
+  <p>内容：<%= @recruitment.recruitment_letter %></p>
+  <p>プレイスタイル：<%= @recruitment.style.name %></p>
+  <p>プレイ時間：<%= @recruitment.play_time.name %></p>
 
-<%= link_to "編集する", edit_public_recruitment_path(@recruitment.id), class:"btn btn-success btn-sm" %>
-<%= link_to "削除する", public_recruitment_path(@recruitment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger btn-sm" %>
+  <% if @recruitment.customer == current_customer %>
+    <%= link_to "編集する", edit_public_recruitment_path(@recruitment.id), class:"btn btn-success btn-sm" %>
+    <%= link_to "削除する", public_recruitment_path(@recruitment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger btn-sm" %>
+  <% end %>
+</div>
 
 <div>
   <% if @recruitment.favorited_by?(current_customer) %>
