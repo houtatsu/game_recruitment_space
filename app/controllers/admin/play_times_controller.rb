@@ -6,8 +6,12 @@ class Admin::PlayTimesController < ApplicationController
 
   def create
     @play_time = PlayTime.new(play_time_params)
-    @play_time.save
-    redirect_to admin_play_times_path
+    if @play_time.save
+      redirect_to admin_play_times_path
+    else
+      @play_times = PlayTime.all
+      render :index
+    end
   end
 
   def edit

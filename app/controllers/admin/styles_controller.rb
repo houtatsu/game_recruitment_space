@@ -6,8 +6,12 @@ class Admin::StylesController < ApplicationController
 
   def create
     @style = Style.new(style_params)
-    @style.save
-    redirect_to admin_styles_path
+    if @style.save
+      redirect_to admin_styles_path
+    else
+      @styles = Style.all
+      render :index
+    end
   end
 
   def edit

@@ -1,26 +1,53 @@
-<h2>プレイ時間一覧・追加</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-12 p-2 text-center">
+			<h2>プレイ時間一覧・追加</h2>
+		</div>
 
-<%= form_with model: @play_time, url: admin_play_times_path, method: :post do |f| %>
-  <h4>プレイ時間</h4>
-  <%= f.text_field :name %>
-
-  <%= f.submit '投稿', class:"btn btn-primary btn-sm" %>
-<% end %>
-
-<table>
-	<thead>
-		<tr>
-			<th>プレイ時間</th>
-		  <th colspan="3"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @play_times.each do |play_time| %>
-			<tr>
-				<td><%= play_time.name %></td>
-				<td><%= link_to "編集する", edit_admin_play_time_path(play_time.id), class:"btn btn-success btn-sm" %></td>
-				<td><%= link_to "削除", admin_play_time_path(play_time.id), method: :delete, class:"btn btn-danger btn-sm" %></td>
-			</tr>
+		<%= form_with model: @play_time, url: admin_play_times_path, method: :post do |f| %>
+			<div class="row">
+				<div class="col-8">
+					<%= f.text_field :name %>
+				</div>
+				<div class="col-4">
+					<%= f.submit "追加", class:"btn btn-primary btn-sm" %>
+				</div>
+			</div>
 		<% end %>
-	</tbody>
-</table>
+
+		<div>
+			<% if @play_time.errors.any? %>
+				<h4><%= @play_time.errors.count %>件のエラーが発生しました</h4>
+					<ul>
+				   	<% @play_time.errors.full_messages.each do |message| %>
+				      <li><%= message %></li>
+				     <% end %>
+				   </ul>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-6 p-2">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>プレイ時間</th>
+					  <th colspan="3"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @play_times.each do |play_time| %>
+						<tr>
+							<td><%= play_time.id %></td>
+							<td><%= play_time.name %></td>
+							<td><%= link_to "編集する", edit_admin_play_time_path(play_time.id), class:"btn btn-success btn-sm" %></td>
+							<td><%= link_to "削除", admin_play_time_path(play_time.id), method: :delete, class:"btn btn-danger btn-sm" %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
