@@ -1,9 +1,21 @@
-<h2><%= @customer.name %>さんの詳細</h2>
-
-<table>
-  <tr><th>いいね数</th><td><%= @customer.favorites.count %></td></tr>
-  <tr><th>コメント数</th><td><%= @customer.comments.count %></td></tr>
-  <tr><th>作成日</th><td><%= @customer.created_at.strftime('%Y/%m/%d') %></td></tr>
-</table>
-
-<%= link_to "戻る", admin_customers_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-2 text-center">
+      <h2><%= @customer.name %>さんの詳細</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7 p-2 mx-auto">
+      <table class="table">
+        <tr><th class="col-5">いいね数</th><td class="col-2"><%= @customer.favorites.count %></td></tr>
+        <tr><th class="col-5">コメント数</th><td class="col-2"><%= @customer.comments.count %></td></tr>
+        <tr><th class="col-5">作成日</th><td class="col-2"><%= @customer.created_at.strftime('%Y/%m/%d') %></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-3 text-center">
+      <%= link_to "戻る", admin_customers_path, class: "btn btn-info" %>
+    </div>
+  </div>
+</div>

@@ -3,32 +3,28 @@
 		<div class="col-12 p-2 text-center">
 			<h2>プレイ時間一覧・追加</h2>
 		</div>
-
-		<%= form_with model: @play_time, url: admin_play_times_path, method: :post do |f| %>
-			<div class="row">
-				<div class="col-8">
-					<%= f.text_field :name %>
-				</div>
-				<div class="col-4">
-					<%= f.submit "追加", class:"btn btn-primary btn-sm" %>
-				</div>
-			</div>
-		<% end %>
-
-		<div>
+	</div>
+	<div class="row">
+		<div class="col-12 p-3 text-center">
 			<% if @play_time.errors.any? %>
-				<h4><%= @play_time.errors.count %>件のエラーが発生しました</h4>
-					<ul>
-				   	<% @play_time.errors.full_messages.each do |message| %>
-				      <li><%= message %></li>
-				     <% end %>
-				   </ul>
+			  <%= @play_time.errors.count %>件のエラーが発生しました
+			    <% @play_time.errors.full_messages.each do |message| %>
+			      <li><%= message %></li>
+			    <% end %>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 p-3 text-center">
+			<%= form_with model: @play_time, url: admin_play_times_path, method: :post do |f| %>
+				<%= f.text_field :name %>
+				<%= f.submit "追加", class:"btn btn-primary btn-sm" %>
 			<% end %>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-6 p-2">
+		<div class="col-6 p-2 mx-auto">
 			<table class="table">
 				<thead>
 					<tr>

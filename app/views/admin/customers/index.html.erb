@@ -1,20 +1,29 @@
-<h2>顧客一覧</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>No.</th>
-      <th>氏名</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @customers.each do |customer| %>
-      <tr>
-        <td><%= customer.id %></td>
-        <td><%= customer.name %></td>
-        <td><%= link_to "詳細", admin_customer_path(customer.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-2 text-center">
+      <h2>顧客一覧</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 p-2 mx-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>氏名</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.id %></td>
+              <td><%= customer.name %></td>
+              <td><%= link_to "詳細", admin_customer_path(customer.id), class: "btn btn-secondary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

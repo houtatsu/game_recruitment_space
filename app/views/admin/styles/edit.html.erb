@@ -1,9 +1,16 @@
-<h2>プレイスタイル編集画面</h2>
-
-<%= form_with model: @style, url: admin_style_path, method: :patch do |f| %>
-
-  <label for="inputName">プレイスタイル</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"プレイスタイル" %><br>
-
-  <%= f.submit '保存', class:"btn btn-info btn-sm" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-3 text-center">
+      <h2>プレイスタイル編集画面</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-3 text-center">
+      <%= form_with model: @style, url: admin_style_path, method: :patch do |f| %>
+        <label for="inputName">プレイスタイル</label>
+        <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"プレイスタイル" %>
+        <%= f.submit '保存', class:"btn btn-info btn-sm" %>
+      <% end %>
+    </div>
+  </div>
+</div>
