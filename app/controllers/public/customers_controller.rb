@@ -13,6 +13,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
+    flash[:notice] = "保存が完了しました。"
     redirect_to public_customer_path(@customer.id)
   end
 

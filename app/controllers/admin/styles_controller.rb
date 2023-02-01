@@ -7,6 +7,7 @@ class Admin::StylesController < ApplicationController
   def create
     @style = Style.new(style_params)
     if @style.save
+      flash[:notice] = "追加が完了しました。"
       redirect_to admin_styles_path
     else
       @styles = Style.all
@@ -21,12 +22,14 @@ class Admin::StylesController < ApplicationController
   def update
     @style = Style.find(params[:id])
     @style.update(style_params)
+    flash[:notice] = "保存が完了しました。"
     redirect_to admin_styles_path
   end
 
   def destroy
     @style = Style.find(params[:id])
     @style.destroy
+    flash[:notice] = "削除が完了しました。"
     redirect_to admin_styles_path
   end
 

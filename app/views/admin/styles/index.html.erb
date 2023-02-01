@@ -1,5 +1,11 @@
 <div class="container">
 	<div class="row">
+		<div class="col-12 text-center">
+			<%= render 'layouts/flash_message' %>
+		</div>
+	</div>
+
+	<div class="row">
 		<div class="col-12 p-2 text-center">
 			<h2>プレイスタイル追加・一覧</h2>
 		</div>
@@ -41,7 +47,7 @@
 							<td><%= style.id %></td>
 							<td><%= style.name %></td>
 							<td><%= link_to "編集する", edit_admin_style_path(style.id), class:"btn btn-success btn-sm" %></td>
-							<td><%= link_to "削除", admin_style_path(style.id), method: :delete, class:"btn btn-danger btn-sm" %></td>
+							<td><%= link_to "削除", admin_style_path(style.id), method: :delete, data: {confirm: "削除しますか？"}, class:"btn btn-danger btn-sm" %></td>
 						</tr>
 					<% end %>
 				</tbody>

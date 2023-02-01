@@ -1,5 +1,11 @@
 <div class="container">
 	<div class="row">
+		<div class="col-12 text-center">
+			<%= render 'layouts/flash_message' %>
+		</div>
+	</div>
+
+	<div class="row">
 		<div class="col-12 p-2 text-center">
 			<h2>プレイ時間一覧・追加</h2>
 		</div>
@@ -39,7 +45,7 @@
 							<td><%= play_time.id %></td>
 							<td><%= play_time.name %></td>
 							<td><%= link_to "編集する", edit_admin_play_time_path(play_time.id), class:"btn btn-success btn-sm" %></td>
-							<td><%= link_to "削除", admin_play_time_path(play_time.id), method: :delete, class:"btn btn-danger btn-sm" %></td>
+							<td><%= link_to "削除", admin_play_time_path(play_time.id), method: :delete, data: {confirm: "削除しますか？"}, class:"btn btn-danger btn-sm" %></td>
 						</tr>
 					<% end %>
 				</tbody>

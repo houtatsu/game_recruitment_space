@@ -9,6 +9,7 @@ class Public::RecruitmentsController < ApplicationController
     @recruitment = Recruitment.new(recruitment_params)
     @recruitment.customer_id = current_customer.id
     if @recruitment.save
+      flash[:notice] = "投稿が完了しました。"
       redirect_to public_recruitment_path(@recruitment.id)
     else
       render :new
@@ -27,12 +28,14 @@ class Public::RecruitmentsController < ApplicationController
   def update
     @recruitment = Recruitment.find(params[:id])
     @recruitment.update(recruitment_params)
+    flash[:notice] = "保存が完了しました。"
     redirect_to public_recruitment_path(@recruitment.id)
   end
 
   def destroy
     @recruitment = Recruitment.find(params[:id])
     @recruitment.destroy
+    flash[:notice] = "削除が完了しました。"
     redirect_to public_root_path
   end
 

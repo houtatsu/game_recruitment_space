@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    models:
+      recruitment_letter: '募集内容'
+      style: 'プレイスタイル'
+      play_time: 'プレイ時間'
+    attributes:
+      recruitment:
+        recruitment_letter: '募集内容'
+        style: 'プレイスタイル'
+        play_time: 'プレイ時間'
+      play_time:
+        name: 'プレイ時間'
+      style:
+        name: 'プレイスタイル'
