@@ -1,11 +1,23 @@
-<h2>いいね一覧</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-3 text-center">
+      <h2>いいね一覧</h2>
+    </div>
+  </div>
 
-<% @favorite_recruitments.each do |recruitment| %>
+  <div class="row">
+    <% @favorite_recruitments.each do |recruitment| %>
+      <div class="col-5 p-2 text-right">
+        <%= image_tag recruitment.customer.get_profile_image(50,50) %><br>
+        <%= recruitment.customer.name %>
+      </div>
+      <div class="col-6 p-2 text-left">
+        <%= recruitment.recruitment_letter %><br>
+        <%= recruitment.style.name %><br>
+        <%= recruitment.play_time.name %><br>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-  <p><%= image_tag recruitment.customer.get_profile_image(40,40) %><%= recruitment.customer.name %></p>
-  <p>
-    <%= recruitment.recruitment_letter %><br>
-    <%= recruitment.style.name %><br>
-    <%= recruitment.play_time.name %><br>
-  </p>
-<% end %>
+

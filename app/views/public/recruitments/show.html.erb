@@ -1,47 +1,76 @@
-<h2>編集内容詳細画面</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-3 text-center">
+      <h2>編集内容詳細画面</h2>
+    </div>
+  </div>
 
-<div>
-  <p>内容：<%= @recruitment.recruitment_letter %></p>
-  <p>プレイスタイル：<%= @recruitment.style.name %></p>
-  <p>プレイ時間：<%= @recruitment.play_time.name %></p>
+  <div class="row mb-3">
+    <h4 class="col-3 text-center">内容：</h4>
+    <div class="col-6 text-center"><%= @recruitment.recruitment_letter %></div>
+  </div>
+  <div class="row mb-3">
+    <h4 class="col-3 text-center">プレイスタイル：</h4>
+    <div class="col-6 text-center"><%= @recruitment.style.name %></div>
+  </div>
+  <div class="row mb-3">
+    <h4 class="col-3 text-center">プレイ時間：</h4>
+    <div class="col-6 text-center"><%= @recruitment.play_time.name %></div>
+  </div>
 
-  <% if @recruitment.customer == current_customer %>
-    <%= link_to "編集する", edit_public_recruitment_path(@recruitment.id), class:"btn btn-success btn-sm" %>
-    <%= link_to "削除する", public_recruitment_path(@recruitment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger btn-sm" %>
-  <% end %>
-</div>
-
-<div>
-  <% if @recruitment.favorited_by?(current_customer) %>
-    <p>
-      <%= link_to public_recruitment_favorites_path(@recruitment), method: :delete do %>
-        ♥<%= @recruitment.favorites.count %> いいね
+  <div class="row">
+    <div class="col-12 p-2 text-center">
+      <% if @recruitment.customer == current_customer %>
+        <%= link_to "編集する", edit_public_recruitment_path(@recruitment.id), class:"btn btn-success" %>
+        <%= link_to "削除する", public_recruitment_path(@recruitment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
       <% end %>
-    </p>
-  <% else %>
-    <p>
-      <%= link_to public_recruitment_favorites_path(@recruitment), method: :post do %>
-        ♡<%= @recruitment.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-</div>
+    </div>
+  </div>
 
-<div>
-  <p>コメント件数：<%= @recruitment.comments.count %></p>
-  <% @recruitment.comments.each do |comment| %>
-    <p><%= image_tag comment.customer.get_profile_image(40,40) %></p>
-    <%= comment.customer.name %>
-    <%= comment.content %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <% if comment.customer == current_customer %>
-      <%= link_to "削除", public_recruitment_comment_path(comment.recruitment, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-    <% end %>
-  <% end %>
-</div>
-<div>
-  <%= form_with model: [@recruitment, @comment], url: public_recruitment_comments_path(@recruitment.id), method: :post do |f| %>
-    <%= f.text_area :content, rows: '3', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+  <div class="row">
+    <div class="col-5 text-right">
+      <% if @recruitment.favorited_by?(current_customer) %>
+        <p>
+          <%= link_to public_recruitment_favorites_path(@recruitment), method: :delete do %>
+            ♥<%= @recruitment.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to public_recruitment_favorites_path(@recruitment), method: :post do %>
+            ♡<%= @recruitment.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+    <div class="col-2 text-center">
+      |
+    </div>
+    <div class="col-5 text-left">
+      <p>コメント件数：<%= @recruitment.comments.count %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 p-2 text-center">
+      <% @recruitment.comments.each do |comment| %>
+        <p><%= image_tag comment.customer.get_profile_image(40,40) %>
+        <%= comment.customer.name %><br>
+        <%= comment.content %><br>
+        <%= comment.created_at.strftime('%Y/%m/%d') %></p>
+        <% if comment.customer == current_customer %>
+          <%= link_to "削除", public_recruitment_comment_path(comment.recruitment, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 p-2 text-center">
+      <%= form_with model: [@recruitment, @comment], url: public_recruitment_comments_path(@recruitment.id), method: :post do |f| %>
+        <%= f.text_area :content, rows: '3', placeholder: "コメントをここに書いてください" %><br>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
+  </div>
 </div>

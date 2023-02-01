@@ -1,12 +1,25 @@
-<h2>投稿内容編集画面</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-3 text-center">
+      <h2>投稿内容編集画面</h2>
+    </div>
+  </div>
 
-<%= form_with model: @recruitment, url: public_recruitment_path(@recruitment.id), method: :patch do |f| %>
-  <h4>内容</h4>
-  <%= f.text_area :recruitment_letter %><br>
-  <h4>スタイル</h4>
-  <%= f.select :style_id, options_from_collection_for_select(Style.all, :id, :name) %><br>
-  <h4>プレイ時間</h4>
-  <%= f.select :play_time_id, options_from_collection_for_select(PlayTime.all, :id, :name) %><br>
-
-  <%= f.submit '保存', class:"btn btn-info btn-sm" %>
-<% end %>
+  <%= form_with model: @recruitment, url: public_recruitment_path(@recruitment.id), method: :patch do |f| %>
+    <div class="row mb-3 text-center">
+      <h4 class="col-4">内容</h4>
+      <%= f.text_area :recruitment_letter, class: "col-6", rows: "4" %>
+    </div>
+    <div class="row mb-3 text-center">
+      <h4 class="col-4">スタイル</h4>
+      <%= f.select :style_id, options_from_collection_for_select(Style.all, :id, :name), class: "col-6" %><br>
+    </div>
+    <div class="row mb-3 text-center">
+      <h4 class="col-4">プレイ時間</h4>
+      <%= f.select :play_time_id, options_from_collection_for_select(PlayTime.all, :id, :name), class: "col-6" %><br>
+    </div>
+    <div class="actions text-center">
+      <%= f.submit "保存", class:"btn btn-info" %>
+    </div>
+  <% end %>
+</div>

@@ -1,30 +1,44 @@
-<h2>募集投稿</h2>
-<div>
-  <%= search_form_for @q, url: search_public_recruitments_path do |f| %>
-    <%= f.label :recruitment_letter_cont, "募集内容" %>
-    <%= f.search_field :recruitment_letter_cont %>
-    <br>
-    <%= f.submit "検索" %>
-  <% end %>
-</div>
-
-<%= form_with model: @recruitment, url: public_recruitments_path, method: :post do |f| %>
-  <h4>内容</h4>
-  <%= f.text_area :recruitment_letter %><br>
-  <h4>スタイル</h4>
-  <%= f.select :style_id, options_from_collection_for_select(Style.all, :id, :name) %><br>
-  <h4>プレイ時間</h4>
-  <%= f.select :play_time_id, options_from_collection_for_select(PlayTime.all, :id, :name) %><br>
-  <%= f.submit '投稿', class:"btn btn-primary btn-sm" %>
-<% end %>
-
-<div>
-  <% if @recruitment.errors.any? %>
-    <%= @recruitment.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @recruitment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2>募集投稿</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <%= search_form_for @q, url: search_public_recruitments_path do |f| %>
+        <%= f.label :recruitment_letter_cont, "募集内容" %>
+        <%= f.search_field :recruitment_letter_cont %>
+        <%= f.submit "検索" %>
       <% end %>
-    </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-3 text-center">
+      <% if @recruitment.errors.any? %>
+        <%= @recruitment.errors.count %>件のエラーが発生しました
+            <% @recruitment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= form_with model: @recruitment, url: public_recruitments_path, method: :post do |f| %>
+    <div class="row mb-3 text-center">
+      <h4 class="col-4">内容</h4>
+      <%= f.text_area :recruitment_letter, class: "col-6", rows: "4" %>
+    </div>
+    <div class="row mb-3 text-center">
+      <h4 class="col-4">スタイル</h4>
+      <%= f.select :style_id, options_from_collection_for_select(Style.all, :id, :name), { include_blank: "選択してください"}, class: "col-6" %><br>
+    </div>
+    <div class="row mb-3 text-center">
+      <h4 class="col-4">プレイ時間</h4>
+      <%= f.select :play_time_id, options_from_collection_for_select(PlayTime.all, :id, :name), { include_blank: "選択してください"}, class: "col-6" %><br>
+    </div>
+    <div class="actions text-center">
+      <%= f.submit "投稿", class:"btn btn-primary" %>
+    </div>
   <% end %>
 </div>
