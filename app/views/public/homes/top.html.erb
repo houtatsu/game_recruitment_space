@@ -16,7 +16,7 @@
 							<td><%= recruitment.recruitment_letter %></td>
 							<td><%= recruitment.style.name %></td>
 							<td><%= recruitment.play_time.name %></td>
-							<td><%= link_to "詳細", public_recruitment_path(recruitment.id) %></td>
+							<td><%= link_to "詳細", public_recruitment_path(recruitment.id), class: "btn btn-secondary" %></td>
 						</tr>
 					<% end %>
 				</tbody>

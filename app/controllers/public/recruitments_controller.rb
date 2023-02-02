@@ -1,4 +1,5 @@
 class Public::RecruitmentsController < ApplicationController
+  before_action :authenticate_customer!
   before_action :set_q
 
   def new
