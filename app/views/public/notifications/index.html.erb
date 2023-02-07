@@ -6,8 +6,10 @@
     </div>
 
     <div class="row">
-        <div class="col-8 p-2 text-right">
-            <%= link_to "全通知削除", public_notification_path(@notifications), method: :delete %>
+        <div class="col-10 p-2 text-right">
+            <%= link_to public_notification_path(@notifications), method: :delete, class: "btn btn-danger btn-sm" do %>
+                <i class="fas fa-trash"></i>全通知削除
+            <% end %>
         </div>
     </div>
 

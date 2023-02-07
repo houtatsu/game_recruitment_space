@@ -11,15 +11,24 @@
       <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"氏名", class: "col-4" %>
     </div>
     <div class="row mb-3 text-center">
-      <label class="col-4", for="inputName">メールアドレス</label>
-      <%= f.email_field :email, autofocus: true, id:"inputName", placeholder:"メールアドレス", class: "col-4" %>
+      <label class="col-4", for="inputEmail">メールアドレス</label>
+      <%= f.email_field :email, id:"inputEmail", placeholder:"メールアドレス", class: "col-4" %>
+    </div>
+    <div class="row mb-3 text-center">
+      <label class="col-4", for="inputPassword">パスワード</label>
+      <%= f.password_field :password, id:"inputPassword", placeholder:"パスワード", class: "col-4" %>
     </div>
     <div class="row mb-3 text-center">
       <label class="col-4", for="inputImage">プロフィール画像</label>
       <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*", class: "col-4" %><br>
     </div>
-    <div class="actions text-center">
+    <div class="actions text-center p-2">
       <%= f.submit "変更を保存", class:"btn btn-info" %>
+    </div>
+    <div class="actions text-center p-2">
+      <% if @customer == current_customer %>
+        <%= link_to "アカウント削除", public_customer_path(@customer), method: :delete, class: "btn btn-danger" %>
+      <% end %>
     </div>
   <% end %>
 </div>

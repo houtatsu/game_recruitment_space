@@ -7,6 +7,7 @@ class Admin::PlayTimesController < ApplicationController
   def create
     @play_time = PlayTime.new(play_time_params)
     if @play_time.save
+      flash[:notice] = "作成しました。"
       redirect_to admin_play_times_path
     else
       @play_times = PlayTime.all
@@ -21,6 +22,7 @@ class Admin::PlayTimesController < ApplicationController
   def update
     @play_time = PlayTime.find(params[:id])
     if @play_time.update(play_time_params)
+      flash[:notice] = "更新しました。"
       redirect_to admin_play_times_path
     else
       @play_times = PlayTime.all
@@ -31,6 +33,7 @@ class Admin::PlayTimesController < ApplicationController
   def destroy
     @play_time = PlayTime.find(params[:id])
     @play_time.destroy
+    flash[:notice] = "削除しました。"
     redirect_to admin_play_times_path
   end
 

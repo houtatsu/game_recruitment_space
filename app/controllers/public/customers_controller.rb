@@ -16,6 +16,12 @@ class Public::CustomersController < ApplicationController
     flash[:notice] = "保存が完了しました。"
     redirect_to public_customer_path(@customer.id)
   end
+  
+  def destroy
+    @customer = Customer.find(params[:id])
+    @customer.destroy
+    redirect_to new_customer_registration_path
+  end
 
   def favorites
     @customer = Customer.find(params[:id])
@@ -34,6 +40,6 @@ class Public::CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:name, :profile_image)
+    params.require(:customer).permit(:name, :email, :password, :profile_image)
   end
 end

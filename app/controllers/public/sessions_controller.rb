@@ -12,6 +12,7 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     customer = Customer.guest
     sign_in customer
+    flash[:notice] = "ゲストユーザーとしてログインしました。"
     redirect_to public_root_path
   end
   # before_action :configure_sign_in_params, only: [:create]
