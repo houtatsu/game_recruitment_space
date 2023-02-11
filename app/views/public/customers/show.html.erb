@@ -32,7 +32,6 @@
       <table class="table">
         <thead>
           <tr>
-            <th>No.</th>
             <th>募集内容</th>
             <th>いいね数</th>
             <th>コメント数</th>
@@ -41,7 +40,6 @@
         <tbody>
           <% @recruitments.each do |recruitment| %>
             <tr>
-              <td><%= recruitment.id %></td>
               <td><%= link_to recruitment.recruitment_letter, public_recruitment_path(recruitment.id) %></td>
               <td><%= recruitment.favorites.count %>いいね</td>
               <td><%= recruitment.comments.count %>コメント</td>

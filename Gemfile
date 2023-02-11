@@ -60,6 +60,4 @@ gem 'devise'
 
 gem 'ransack'
 
-gem 'kaminari','~> 1.2.1'
-
-gem 'rails-i18n', '~> 7.0', '>= 7.0.6'
+gem 'rails-i18n'

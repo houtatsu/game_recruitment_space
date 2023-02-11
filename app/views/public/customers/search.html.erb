@@ -19,7 +19,7 @@
           <% @results.each do |customer| %>
             <tr>
               <td><%= customer.name %></td>
-              <td><%= link_to "マイページ", public_customer_path(customer.id) %></td>
+              <td><%= link_to "詳細", public_customer_path(customer.id) %></td>
             </tr>
           <% end %>
         </tbody>

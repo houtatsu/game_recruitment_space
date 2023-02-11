@@ -1,5 +1,5 @@
-<header class="sticky-top">
-    <nav class="navbar navbar-expand-md">
+<header class="sticky-top shadow">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark text-white p-3">
       <div class="container">
         <strong>
           <% if customer_signed_in? %>
@@ -16,64 +16,64 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
-              <li class="nav-item mr-4 btn btn-outline-dark">
+              <li class="nav-item mr-4 btn btn-outline-warning">
                 <%= link_to public_notifications_path do %>
                   <i class="fas fa-exclamation fa-lg"></i>通知
                 <% end %>
               </li>
-              <li class="nav-item mr-4 btn btn-outline-dark">
+              <li class="nav-item mr-4 btn btn-outline-warning">
                 <%= link_to new_public_recruitment_path do %>
                   <i class="fas fa-plus-square fa-lg"></i>募集投稿
                 <% end %>
               </li>
-              <li class="nav-item mr-4 btn btn-outline-dark">
+              <li class="nav-item mr-4 btn btn-outline-warning">
                 <%= link_to favorites_public_customer_path(current_customer.id) do %>
                   <i class="fas fa-thumbs-up fa-lg"></i>いいね一覧
                 <% end %>
               </li>
-              <li class="nav-item mr-4 btn btn-outline-dark">
+              <li class="nav-item mr-4 btn btn-outline-warning">
                 <%= link_to public_customer_path(current_customer.id) do %>
                   <i class="fas fa-users fa-lg"></i>マイページ
                 <% end %>
               </li>
-              <li class="nav-item mr-4 btn btn-outline-dark">
+              <li class="nav-item mr-4 btn btn-outline-warning">
                 <%= link_to destroy_customer_session_path, method: :delete do %>
                   <i class="fas fa-sign-out-alt fa-lg"></i>ログアウト
                 <% end %>
               </li>
             <% elsif admin_signed_in? %>
-              <li class="nav-item mr-4 btn btn-outline-dark">
+              <li class="nav-item mr-4 btn btn-outline-warning">
                 <%= link_to admin_styles_path do %>
                   <i class="fas fa-walking fa-lg"></i>プレイスタイル
                 <% end %>
               </li>
-              <li class="nav-item mr-4 btn btn-outline-dark">
+              <li class="nav-item mr-4 btn btn-outline-warning">
                 <%= link_to admin_play_times_path do %>
                   <i class="fas fa-clock fa-lg"></i>プレイ時間
                 <% end %>
               </li>
-              <li class="nav-item mr-4 btn btn-outline-dark">
+              <li class="nav-item mr-4 btn btn-outline-warning">
                 <%= link_to admin_customers_path do %>
                   <i class="fas fa-users fa-lg"></i>ユーザー一覧
                 <% end %>
               </li>
-              <li class="nav-item mr-4 btn btn-outline-dark">
+              <li class="nav-item mr-4 btn btn-outline-warning">
                 <%= link_to destroy_admin_session_path, method: :delete do %>
                   <i class="fas fa-sign-out-alt fa-lg"></i>ログアウト
                 <% end %>
               </li>
             <% else %>
-              <li class="nav-item mr-5 btn btn-outline-dark">
+              <li class="nav-item mr-5 btn btn-outline-warning">
                 <%= link_to  new_customer_registration_path do %>
                   <i class="fas fa-user-plus fa-lg"></i>新規登録
                 <% end %>
               </li>
-              <li class="nav-item mr-5 btn btn-outline-dark">
+              <li class="nav-item mr-5 btn btn-outline-warning">
                 <%= link_to new_customer_session_path do %>
                    <i class="fas fa-sign-in-alt fa-lg"></i>ログイン
                 <% end %>
               </li>
-              <li class="nav-item mr-5 btn btn-outline-dark">
+              <li class="nav-item mr-5 btn btn-outline-warning">
                 <%= link_to customers_guest_sign_in_path, method: :post do %>
                   <i class="fas fa-key fa-lg"></i>ゲストログイン
                 <% end %>
