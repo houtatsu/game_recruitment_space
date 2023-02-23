@@ -34,7 +34,7 @@
       <%= f.select :style_id, options_from_collection_for_select(Style.all, :id, :name), { include_blank: "選択してください"}, class: "col-6" %><br>
     </div>
     <div class="row mb-3 text-center">
-      <h4 class="col-4">プレイ時間</h4>
+      <h4 class="col-4">募集時間</h4>
       <%= f.select :play_time_id, options_from_collection_for_select(PlayTime.all, :id, :name), { include_blank: "選択してください"}, class: "col-6" %><br>
     </div>
     <div class="actions text-center">
