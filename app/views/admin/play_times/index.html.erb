@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-12 p-3 text-center">
 			<%= form_with model: @play_time, url: admin_play_times_path, method: :post do |f| %>
-				<%= f.text_field :name, placeholder: "プレイ時間" %>
+				<%= f.text_field :name, placeholder: "募集時間" %>
 				<%= f.submit "追加", class:"btn btn-primary btn-sm" %>
 			<% end %>
 		</div>
